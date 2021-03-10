@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+    stages {
+        
+        stage('Compile') {
+            steps{
+                bat 'dir'
+            }
+        }
+    }
+    post {
+        failure {
+            mail bcc: '', body: "$BUILD_NUMBER", subject: "$JOB_NAME", to: 'sweety.space24@gmail.com'
+        }
+        success {
+            mail bcc: '', body: "$BUILD_NUMBER", subject: "$JOB_NAME", to: 'sweety.space24n@gmail.com'
+        }      
+    }
+}
